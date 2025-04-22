@@ -1,67 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Trigger rebuild -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Code Project Dashboard</title>
-   <link rel="stylesheet" href="styles.css">
+  <title>Code Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
   <script src="script.js"></script>
 </head>
 <body>
-  <header>
-    <h1>💻 Code Project Showcase</h1>
-    <p class="subheading">Click a contributor to view their code explanation</p>
-  </header>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>TEAM MEMBERS</h2>
+      <ul id="team-list">
+        <li data-user="chi" class="active">Chi</li>
+        <li data-user="daryl">Daryl</li>
+        <li data-user="imran">Imran</li>
+        <li data-user="zach">Zach</li>
+        <li data-user="vanessa">Vanessa</li>
+        <li data-user="simon">Simon</li>
+        <li data-user="joshua">Joshua Vireak</li>
+        <li data-user="leon">Leon</li>
+      </ul>
+    </aside>
 
-  <main>
-    <div class="card-grid">
-      <div class="card">
-        <h2>Chi</h2>
-        <button class="open-btn" data-section-id="chi">📂 View PDF</button>
-        <div id="chi-files" class="files-container"></div>
+    <main class="main-content">
+      <div class="top-bar">
+        <h1 id="user-name">Chi</h1>
+        <div class="stats">
+          <p><strong>Environment:</strong> Python 3.10</p>
+          <p><strong>Last Update:</strong> 22/04/2025</p>
+        </div>
       </div>
-      <div class="card">
-        <h2>Daryl</h2>
-        <button class="open-btn" data-section-id="daryl">📂 View PDF</button>
-        <div id="daryl-files" class="files-container"></div>
-      </div>
-      <div class="card">
-        <h2>Imran</h2>
-        <button class="open-btn" data-section-id="imran">📂 View PDF</button>
-        <div id="imran-files" class="files-container"></div>
-      </div>
-      <div class="card">
-        <h2>Zach</h2>
-        <button class="open-btn" data-section-id="zach">📂 View PDF</button>
-        <div id="zach-files" class="files-container"></div>
-      </div>
-      <div class="card">
-        <h2>Vanessa</h2>
-        <button class="open-btn" data-section-id="vanessa">📂 View PDF</button>
-        <div id="vanessa-files" class="files-container"></div>
-      </div>
-      <div class="card">
-        <h2>Simon</h2>
-        <button class="open-btn" data-section-id="simon">📂 View PDF</button>
-        <div id="simon-files" class="files-container"></div>
-      </div>
-      <div class="card">
-        <h2>Joshua and Vireak</h2>
-        <button class="open-btn" data-section-id="joshua">📂 View PDF</button>
-        <div id="joshua-files" class="files-container"></div>
-      </div>
-      <div class="card">
-        <h2>Leon</h2>
-        <button class="open-btn" data-section-id="leon">📂 View PDF</button>
-        <div id="leon-files" class="files-container"></div>
-      </div>
-    </div>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 Code Showcase Group | Project Dashboard</p>
-  </footer>
+      <div class="iframe-container" id="embed-container">
+        <iframe src="https://replit.com/@chiuser/chi-project?embed=true" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
