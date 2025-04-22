@@ -1,0 +1,78 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+header li {
+    margin-right: 20px;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+header a:hover {
+    color: #ccc;
+}
+
+section {
+    background-color: #f7f7f7;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button.open-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button.open-btn:hover {
+    background-color: #555;
+}
+
+.files-container {
+    margin-top: 20px;
+}
+
+.files-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.files-container li {
+    margin-bottom: 10px;
+}
+
+.files-container a {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.files-container a:hover {
+    color: #23527c;
+}
