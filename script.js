@@ -1,41 +1,29 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    const openBtns = document.querySelectorAll('.open-btn');
+  const files = {
+    chi: [{ name: 'Chi's Code', url: 'Chi.pdf' }],
+    daryl: [{ name: 'Daryl's Code', url: 'Daryl.pdf' }],
+    imran: [{ name: 'Imran's Code', url: 'Imran.pdf' }],
+    zach: [{ name: 'Zach's Code', url: 'Zach.pdf' }],
+    vanessa: [{ name: 'Vanessa's Code', url: 'Vanessa.pdf' }],
+    simon: [{ name: 'Simon's Code', url: 'Simon.pdf' }],
+    joshua: [{ name: 'Joshua and Vireak's Code', url: 'Joshua_Vireak.pdf' }],
+    leon: [{ name: 'Leon's Code', url: 'Leon.pdf' }]
+  };
 
-    openBtns.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const sectionId = btn.getAttribute('data-section-id');
-            const filesContainer = document.getElementById(sectionId + '-files');
+  document.querySelectorAll('.open-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const sectionId = btn.getAttribute('data-section-id');
+      const filesContainer = document.getElementById(`${sectionId}-files`);
+      filesContainer.innerHTML = ''; // clear if already loaded
 
-            // Load and display attached files
-            // Replace this with your actual file loading logic
-            const files = [
-                { name: 'File 1', url: 'Chi.pdf' },
-                { name: 'File 2', url: 'Daryl.pdf' },
-                { name: 'File 3', url: 'Imran.pdf' },
-                { name: 'File 4', url: 'Zach.pdf' },
-                { name: 'File 5', url: 'Vanessa.pdf' },
-                { name: 'File 6', url: 'Simon.pdf' },
-                { name: 'File 7', url: 'Joshua_Vireak.pdf' },
-                { name: 'File 8', url: 'Leon.pdf' }
-            ];
-
-            files.forEach((file) => {
-                const fileLink = document.createElement('a');
-                fileLink.href = file.url;
-                fileLink.download = file.name;
-                fileLink.click();
-
-                // Create a link to view the file content
-                const viewLink = document.createElement('a');
-                viewLink.href = file.url;
-                viewLink.target = '_blank';
-                viewLink.textContent = 'View File';
-
-                filesContainer.appendChild(viewLink);
-            });
-        });
+      files[sectionId].forEach(file => {
+        const link = document.createElement('a');
+        link.href = file.url;
+        link.target = '_blank';
+        link.textContent = `📄 ${file.name}`;
+        filesContainer.appendChild(link);
+      });
     });
+  });
 });
+
