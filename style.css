@@ -1,78 +1,71 @@
-/* styles.css */
-
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+  background-color: #35495e;
+  color: white;
+  padding: 2rem;
+  text-align: center;
 }
 
-header ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
+.subheading {
+  font-weight: 300;
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }
 
-header li {
-    margin-right: 20px;
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
-header a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  text-align: center;
 }
 
-header a:hover {
-    color: #ccc;
-}
-
-section {
-    background-color: #f7f7f7;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.card h2 {
+  margin: 0 0 1rem 0;
 }
 
 button.open-btn {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+  background-color: #2a6ecb;
+  border: none;
+  color: white;
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button.open-btn:hover {
-    background-color: #555;
+  background-color: #1f58a8;
 }
 
 .files-container {
-    margin-top: 20px;
-}
-
-.files-container ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.files-container li {
-    margin-bottom: 10px;
+  margin-top: 1rem;
 }
 
 .files-container a {
-    text-decoration: none;
-    color: #337ab7;
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  color: #2a6ecb;
 }
 
-.files-container a:hover {
-    color: #23527c;
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #eee;
+  font-size: 0.9rem;
 }
