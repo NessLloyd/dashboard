@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     imran: [{ name: 'Imran - Code Explanation', url: 'Imran.pdf' }],
     zach: [{ name: 'Zach - Code Explanation', url: 'Zach.pdf' }],
     vanessa: [{ name: 'Vanessa - Code Explanation', url: 'Vanessa.pdf' }],
-    simon: [{ name: 'Simon - Code Explanation', url: 'Simon.pdf' }],
+    simon: [{ name: 'Simon - Code Explanation', url: 'simon.pdf' }],
     joshua: [{ name: 'Joshua - Code Explanation', url: 'Joshua_Vireak.pdf' }],
     leon: [{ name: 'Leon - Code Explanation', url: 'Leon.pdf' }]
   };
