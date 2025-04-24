@@ -1,41 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Code Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
- 
-</head>
+<title>Misinformation Detector</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> </head>
 <body>
-  <div class="dashboard">
-    <aside class="sidebar">
-      <h2>TEAM MEMBERS</h2>
-      <ul id="team-list">
-        <li data-user="chi" class="active">Chi</li>
-        <li data-user="daryl">Daryl</li>
-        <li data-user="imran">Imran</li>
-        <li data-user="zach">Zach</li>
-        <li data-user="vanessa">Vanessa</li>
-        <li data-user="simon">Simon</li>
-        <li data-user="joshua">Joshua and Vireak</li>
-        <li data-user="leon">Leon</li>
-      </ul>
-    </aside>
+<h1>Information Integrity Analyzer</h1> <form id="claimForm">
+<div>
+<label for="claim">Enter your claim:</label> <textarea id="claim" required></textarea>
+</div> <div>
+<label for="source">Source (optional):</label>
+<input type="text" id="source"> </div>
+<button type="submit">Analyze</button> </form>
+<div id="results" style="display: none;"> <h2>Analysis Results</h2>
+<div id="classification"></div>
 
-    <main class="main-content">
-      <div class="top-bar">
-        <h1 id="user-name">Chi</h1>
-      
-      </div>
-      
-  <div id="embed-container">
-    <p>Select a team member to load their project.</p>
-  </div>
-   
-    </main>
-  </div>
+<div id="explanation"></div>
+<div class="score">
+<div>Factuality Score: <span id="factualityScore"></span></div> <div class="bar"><div class="fill" id="factualityBar"></div></div>
+</div>
+<div class="score">
+<div>Intent Score: <span id="intentScore"></span></div> <div class="bar"><div class="fill" id="intentBar"></div></div>
+</div>
+<div class="score">
+<div>Composite Score: <span id="compositeScore"></span></div> <div class="bar"><div class="fill" id="compositeBar"></div></div>
+</div> </div>
+<script>
+document.getElementById('claimForm').addEventListener('submit', async function(e) {
+e.preventDefault();
+const claim = document.getElementById('claim').value; const source = document.getElementById('source').value;
+const response = await fetch('templates/imran/analyze', { method: 'POST',
+headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ claim, source })
+});
 
-  <script src="script.js"></script>
-</body>
-</html>
+const results = await response.json();
+displayResults(results); });
+function displayResults(data) { document.getElementById('results').style.display = 'block'; document.getElementById('classification').innerHTML =
+`<strong>Classification:</strong> ${data.classification} (confidence: ${(data.confidence * 100).toFixed(1)}%)`;
+document.getElementById('factualityScore').textContent = data.factuality_score ? data.factuality_score.toFixed(2) : 'N/A';
+document.getElementById('intentScore').textContent = data.intent_score.toFixed(2);
+document.getElementById('compositeScore').textContent = data.composite_score.toFixed(2);
+if (data.factuality_score) {
+document.getElementById('factualityBar').style.width = `${data.factuality_score * 100}%`;
+}
+document.getElementById('intentBar').style.width = `${data.intent_score * 100}%`;
+document.getElementById('compositeBar').style.width = `${data.composite_score * 100}%`;
+// Simple explanation based on classification
+let explanation = "";
+if (data.classification === "ACCURATE_INFORMATION") {
+explanation = "This information appears to be accurate and reliable."; } else if (data.classification === "MISINFORMATION") {
+explanation = "This appears to be false information, but may not be intentionally deceptive.";
+} else if (data.classification === "DISINFORMATION") {
+explanation = "This appears to be intentionally deceptive information.";
+
+}else{
+explanation = "The system cannot determine the accuracy of this information with confidence.";
+}
+document.getElementById('explanation').innerHTML = `<p>${explanation}</p>`; }
+</script> </body> </html>
