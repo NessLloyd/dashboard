@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from datetime import datetime
-from templates.imran.analyzer import EnhancedMisinfoDetector
+from templates.analyzer import EnhancedMisinfoDetector
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ def imran_page():
 
 
 # Analyze Claim
-@app.route('/imran/analyze', methods=['POST'])
+@app.route('/templates/analyze', methods=['POST'])
 def analyze_claim():
     data = request.json
     claim_data = {
