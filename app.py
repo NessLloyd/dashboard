@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from datetime import datetime
-from templates.analyzer import EnhancedMisinfoDetector
+from analyzer import EnhancedMisinfoDetector
 
 app = Flask(__name__)
 
@@ -11,11 +11,11 @@ detector = EnhancedMisinfoDetector()
 # Imran's UI Page
 @app.route('/imran')
 def imran_page():
-    return render_template('imran/index.html')
+    return render_template('imran.html')
 
 
 # Analyze Claim
-@app.route('/templates/analyze', methods=['POST'])
+@app.route('/analyze', methods=['POST'])
 def analyze_claim():
     data = request.json
     claim_data = {
