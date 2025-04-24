@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from datetime import datetime
-from analyze import EnhancedMisinfoDetector
+from analyzer import EnhancedMisinfoDetector
 
 app = Flask(__name__)
 
