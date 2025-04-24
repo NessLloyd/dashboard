@@ -7,10 +7,6 @@ app = Flask(__name__)
 # Load Imran’s model
 detector = EnhancedMisinfoDetector()
 
-# Home Dashboard Page
-@app.route('/')
-def dashboard():
-    return render_template('index.html')  # Your main dashboard
 
 # Imran's UI Page
 @app.route('/imran')
