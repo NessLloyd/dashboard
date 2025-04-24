@@ -7,10 +7,6 @@ app = Flask(__name__)
 # Load Imran’s model
 detector = EnhancedMisinfoDetector()
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
 # Imran's UI Page
 @app.route('/templates')
 def imran_page():
