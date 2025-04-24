@@ -16,7 +16,7 @@ teamLinks.forEach(link => {
     switch (userKey) {
       case "imran":
         embedContainer.innerHTML = `
-          <iframe src="/imran" frameborder="0" width="100%" height="700px"></iframe>
+          <iframe src="/templates" frameborder="0" width="100%" height="700px"></iframe>
         `;
         break;
 
