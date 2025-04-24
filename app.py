@@ -9,7 +9,7 @@ detector = EnhancedMisinfoDetector()
 
 
 # Imran's UI Page
-@app.route('/imran')
+@app.route('/templates')
 def imran_page():
     return render_template('imran.html')
 
