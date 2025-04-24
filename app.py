@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from datetime import datetime
-from projects.imran.analyzer import EnhancedMisinfoDetector
+from templates.imran.analyzer import EnhancedMisinfoDetector
 
 app = Flask(__name__)
 
@@ -15,7 +15,8 @@ def dashboard():
 # Imran's UI Page
 @app.route('/imran')
 def imran_page():
-    return render_template('projects/imran/templates/index.html')
+    return render_template('imran/index.html')
+
 
 # Analyze Claim
 @app.route('/imran/analyze', methods=['POST'])
