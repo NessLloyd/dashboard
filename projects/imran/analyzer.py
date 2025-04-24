@@ -1,25 +1,47 @@
 import torch
 import numpy as np
+import json
+import networkx as nx
 from datetime import datetime, timedelta
 from collections import defaultdict
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
-class ContradictionMatrix: def __init__(self):
-self.matrix = defaultdict(dict) # claim_id -> {other_claim_id: contradiction_score} self.claim_db = {} # claim_id -> claim_data
-def add_claim(self, claim_id, claim_text, source, timestamp): self.claim_db[claim_id] = {
-"text": claim_text, "source": source, "timestamp": timestamp, "embeddings": None
-}
-def update_contradictions(self, claim_id, other_claim_id, score): self.matrix[claim_id][other_claim_id] = score self.matrix[other_claim_id][claim_id] = score
- 
-def get_temporal_contradictions(self, claim_id, time_window=30): target_claim = self.claim_db[claim_id]
-contradictions = []
-for other_id, other_claim in self.claim_db.items(): if other_id == claim_id:
-continue
-time_diff = (target_claim["timestamp"] - other_claim["timestamp"]).days if abs(time_diff) <= time_window:
-score = self.matrix[claim_id].get(other_id, 0) if score > 0.7: # High contradiction threshold
-contradictions.append({ "claim_id": other_id,
-"text": other_claim["text"], "source": other_claim["source"], "time_diff_days": time_diff, "score": score
-})
-return sorted(contradictions, key=lambda x: x["score"], reverse=True)
+
+class ContradictionMatrix:
+    def __init__(self):
+        self.matrix = defaultdict(dict)  # claim_id -> {other_claim_id: contradiction_score}
+        self.claim_db = {}  # claim_id -> claim_data
+
+    def add_claim(self, claim_id, claim_text, source, timestamp):
+        self.claim_db[claim_id] = {
+            "text": claim_text,
+            "source": source,
+            "timestamp": timestamp,
+            "embeddings": None
+        }
+
+    def update_contradictions(self, claim_id, other_claim_id, score):
+        self.matrix[claim_id][other_claim_id] = score
+        self.matrix[other_claim_id][claim_id] = score
+
+    def get_temporal_contradictions(self, claim_id, time_window=30):
+        target_claim = self.claim_db[claim_id]
+        contradictions = []
+        for other_id, other_claim in self.claim_db.items():
+            if other_id == claim_id:
+                continue
+            time_diff = (target_claim["timestamp"] - other_claim["timestamp"]).days
+            if abs(time_diff) <= time_window:
+                score = self.matrix[claim_id].get(other_id, 0)
+                if score > 0.7:  # High contradiction threshold
+                    contradictions.append({
+                        "claim_id": other_id,
+                        "text": other_claim["text"],
+                        "source": other_claim["source"],
+                        "time_diff_days": time_diff,
+                        "score": score
+                    })
+        return sorted(contradictions, key=lambda x: x["score"], reverse=True)
+
 class IntegrityAnalyzer: def __init__(self):
 # Load DeBERTa models
 self.contradiction_model_name = "microsoft/deberta-large-mnli"
