@@ -8,7 +8,7 @@ app = Flask(__name__)
 detector = EnhancedMisinfoDetector()
 
 @app.route('/')
-def imran_page():
+def index():
     return render_template('index.html')
 
 # Imran's UI Page
