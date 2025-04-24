@@ -27,7 +27,7 @@
 document.getElementById('claimForm').addEventListener('submit', async function(e) {
 e.preventDefault();
 const claim = document.getElementById('claim').value; const source = document.getElementById('source').value;
-const response = await fetch('templates/imran/analyze', { method: 'POST',
+const response = await fetch('templates/analyze', { method: 'POST',
 headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ claim, source })
 });
 
