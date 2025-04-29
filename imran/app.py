@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from analyzer import MisDisInfoDetector
+from analyzer import EnhancedMisDisInfoDetector
 from datetime import datetime, timedelta
 import json
 
