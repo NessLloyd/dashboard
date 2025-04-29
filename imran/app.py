@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import json
 
 app = Flask(__name__)
-detector = MisDisInfoDetector()
+detector = EnhancedMisinfoDetector()
 
 
 KNOWN_FACTS = [
